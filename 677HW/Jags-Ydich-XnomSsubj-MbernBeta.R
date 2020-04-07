@@ -20,7 +20,7 @@ genMCMC = function( data , numSavedSteps=50000 , saveName=NULL ) {
   Nsubj = length(unique(s))
   # Specify the data in a list, for later shipment to JAGS:
   dataList = list(
-    y = y ,
+    #y = y ,
     s = s ,
     Ntotal = Ntotal ,
     Nsubj = Nsubj
@@ -33,7 +33,7 @@ genMCMC = function( data , numSavedSteps=50000 , saveName=NULL ) {
       y[i] ~ dbern( theta[s[i]] )
     }
     for ( sIdx in 1:Nsubj ) {
-      theta[sIdx] ~ dbeta( 2 , 2 ) # N.B.: 2,2 prior; change as appropriate.
+      theta[sIdx] ~ dbeta( 0.5 , 0.5 ) # N.B.: 2,2 prior; change as appropriate.
     }
   }
   " # close quote for modelString
