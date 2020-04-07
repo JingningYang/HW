@@ -1,0 +1,29 @@
+---
+title: "677 HW"
+author: "Jingning Yang"
+date: "4/6/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(rjags)
+```
+
+## Exercise 8.1
+```{r}
+
+read.csv("file.csv")
+# Load the functions genMCMC, smryMCMC, and plotMCMC:
+source("Jags-Ydich-XnomSsubj-MbernBeta.R")
+#source(here::here('Jags-Ydich-XnomSsubj-MbernBeta.R'))
+# Generate the MCMC chain:
+mcmcCoda = genMCMC( data=myData , numSavedSteps=10000 )
+# Display diagnostics of chain, for specified parameter:
+diagMCMC( mcmcCoda , parName="theta[1]" )
+# Display numerical summary statistics of chain:
+smryMCMC( mcmcCoda , compVal=NULL , compValDiff=0.0 )
+# Display graphical posterior information:
+plotMCMC( mcmcCoda , data=myData , compVal=NULL , compValDiff=0.0 )
+```
+
